@@ -1,4 +1,4 @@
-Qiime_to_lefse_format
+Qiime to lefse format
 =====================
 
 ABOUT
