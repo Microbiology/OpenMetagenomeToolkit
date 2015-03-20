@@ -18,8 +18,8 @@ To use the HELP menu of the script use the -h flag:
 python transform_data_for_lefse.py -h
 
 Other additional considerations for using the script include:
--Avoid empty fields or cells in your data tables as this will throw off the script.
--The mapping file should only have information for the samples included in the relative abundance table. Having more samples in the mapping file or relative abundance table will throw off the script.
--For now, the first row of the first column needs to be the same name. Please change them both to something like "SampleID". I will get around to automating this, but for now just maually change it real quick.
+- Avoid empty fields or cells in your data tables as this will throw off the script.
+- The mapping file should only have information for the samples included in the relative abundance table. Having more samples in the mapping file or relative abundance table will throw off the script.
+- For now, the first row of the first column needs to be the same name. Please change them both to something like "SampleID". I will get around to automating this, but for now just maually change it real quick.
 
 If you have questions or comments, feel free to email me at ghanni@upenn.edu
