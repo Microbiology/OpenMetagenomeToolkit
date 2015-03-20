@@ -8,9 +8,9 @@ Lefse is an online program that can take relative abundance data (we use microbi
 
 
 USAGE
-Use the script transform_data_for_lefse.py to prepare Qiime alpha diversity and your mapping file for input into Lefse
+Use the script transform_data_for_lefse.py to prepare Qiime relative abundance tables and your mapping file for input into Lefse
 
-The two input files required are a standard Qiime alpha diversity output file (with the bacterial taxa in the top row and the sample identifications in the first column) and a standard Qiime mapping file (the identifiers in the mapping file should match those in the alpha diversity file).  Please note that the headers for the identification columns in the mapping and alpha diversity files should be the same.
+The two input files required are a standard Qiime relative abundance output file (with the bacterial taxa in the first column and the sample identifications in the first row) and a standard Qiime mapping file (the identifiers in the mapping file should match those in the relative abundance file).  Please note that the headers for the identification columns in the mapping and alpha diversity files should be the same.
 
 Also note that this script requires you to remove the mapping file columns (the columns of meta-data) that you will not use because Lefse requires you to only include the meta-data you will be using.
 
