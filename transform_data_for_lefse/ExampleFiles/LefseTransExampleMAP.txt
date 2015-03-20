@@ -1,0 +1,8 @@
+SampleID	SubjectHome
+12341	America
+12342	America
+12343	Asia
+12344	Asia
+12345	Asia
+12346	Europe
+12347	Europe
