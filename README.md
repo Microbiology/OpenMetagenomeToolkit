@@ -1,5 +1,5 @@
-# Microbiome_sequence_analysis_toolkit
-Useful scripts for microbiome sequence analysis.
+# The Open Metagenome Toolkit
+A collaborative and open source toolkit to facilitate metagenomic analysis.
 
 This toolkit is focused on mobility. Dependencies are minimal so just [download the most recent release](https://github.com/Microbiology/Microbiome_sequence_analysis_toolkit/releases) and you should be good to go.
 
