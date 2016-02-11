@@ -1,6 +1,8 @@
 # The Open Metagenome Toolkit
 A collaborative and open source toolkit to facilitate metagenomic analysis.
 
+**Maintained** by Geoffrey Hannigan
+
 ###Emphasis on Mobility
 This toolkit is focused on mobility. Dependencies are minimal so just [download the most recent release](https://github.com/Microbiology/Microbiome_sequence_analysis_toolkit/releases) and you should be good to go.
 
