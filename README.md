@@ -1,3 +1,5 @@
+[![Twitter Follow](https://img.shields.io/twitter/follow/iprophage.svg?style=social)](https://twitter.com/iprophage)
+
 # The Open Metagenome Toolkit
 A collaborative and open source toolkit to facilitate metagenomic analysis.
 
