@@ -11,7 +11,7 @@ This toolkit is focused on mobility. Dependencies are minimal so just [download 
 ###Getting Involved
 The goal is for this to be a collaborative effort that makes metagenomic analysis easier for everyone. Get involved as a **contributor** to get your **name** added to this repository homepage.
 
-Additionally, if this package is ever published in a peer reviewed journal, I am happy to **share authorship** with the contributors. We are all writing this together after all.
+Additionally, if this package is ever published in a peer reviewed journal, I am happy to **share authorship** with the contributors.
 
 Contribute by adding your own scripts, or by adding functionality to the existing scripts.
 
