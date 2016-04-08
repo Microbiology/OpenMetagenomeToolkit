@@ -17,7 +17,7 @@ my $usage = "Usage: perl $0 <INFILE> <OUTFILE>";
 my $infile = shift or die $usage;
 my $outfile = shift or die $usage;
 open($IN, "<", "$infile") || die "Unable to open $infile: $!";
-open($OUT, "<", "$outfile") || die "Unable to write to $outfile: $!";
+open($OUT, ">", "$outfile") || die "Unable to write to $outfile: $!";
 
 #Set variables to be used later in script
 my $flag = 0;
