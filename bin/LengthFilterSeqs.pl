@@ -1,4 +1,4 @@
-#! /bin/perl
+#!/usr/local/bin/perl -w
 # LengthFilterSeqs.pl
 # Geoffrey Hannigan
 # Pat Schloss Lab
