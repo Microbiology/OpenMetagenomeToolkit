@@ -11,7 +11,7 @@ use warnings;
 # Set files to scalar variables
 my $usage = "Usage: perl $0 <INFILE>";
 my $infile = shift or die $usage;
-open(IN, "<$infile") || die "Unable to open $infile: $!";
+open(my $IN, "<", "$infile") || die "Unable to open $infile: $!";
 
 # Set variable for list of length values
 my @lengths = ();
@@ -19,7 +19,7 @@ my $line_length = 0;
 my $result = 0;
 
 # Assign lengths of each sequence to the array
-while (my $line = <IN>) {
+while (my $line = <$IN>) {
 	# Skip the sequence identifier lines
 	if ($line =~ /\>/) {
 		next;
@@ -50,6 +50,6 @@ if ($array_length%2) {
 }
 
 #Close out files
-close(IN);
+close($IN);
 
 
