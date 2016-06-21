@@ -51,5 +51,3 @@ if ($array_length%2) {
 
 #Close out files
 close($IN);
-
-

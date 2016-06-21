@@ -1,0 +1,10 @@
+#! /bin/bash
+# CalculateMedianLenthFasta
+# Geoffrey Hannigan
+# Pat Schloss Lab
+# University of Michigan
+
+docker run --rm -ti \
+	openmetagenometoolkit \
+	perl /home/pakbin/calculate_fasta_median_length.pl \
+	${1} > ${2}
