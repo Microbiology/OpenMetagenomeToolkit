@@ -1,5 +1,5 @@
 #! /bin/bash
-# CalculateMedianLenthFasta
+# CalculateMedianLenthFastq
 # Geoffrey Hannigan
 # Pat Schloss Lab
 # University of Michigan
@@ -11,8 +11,8 @@
 # Set some commands that we can use at the command line
 usage() { echo -e "Usage: Return median sequence length of sequences:
 	[-h] This helpful help menu
-	[-c] Container ID
-	[-i] Input fasta file (required)"; exit 1;}
+	[-c] Container ID (required)
+	[-i] Input fastq file (required)"; exit 1;}
 
 while getopts ":hi:c:" option; do
     case "$option" in
@@ -35,5 +35,5 @@ docker cp "${INPUT}" "${CONTAINER}":/data/"${INPUT}"
 # This should print to STDOUT
 docker run --rm -ti \
 	openmetagenometoolkit \
-	perl /home/pakbin/calculate_fasta_median_length.pl \
+	perl /home/pakbin/calculate_fastq_median_length.pl \
 	/data/"${INPUT}"

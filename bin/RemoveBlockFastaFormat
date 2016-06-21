@@ -1,5 +1,5 @@
 #! /bin/bash
-# CalculateMedianLenthFasta
+# RemoveBlockFastaFormat
 # Geoffrey Hannigan
 # Pat Schloss Lab
 # University of Michigan
@@ -11,16 +11,18 @@
 # Set some commands that we can use at the command line
 usage() { echo -e "Usage: Return median sequence length of sequences:
 	[-h] This helpful help menu
-	[-c] Container ID
-	[-i] Input fasta file (required)"; exit 1;}
+	[-c] Container ID (required)
+	[-i] Input fasta file (required)
+	[-o] Output fasta file (required)"; exit 1;}
 
 while getopts ":hi:c:" option; do
     case "$option" in
         h) usage ;;
         i) INPUT="$OPTARG";;
 		c) CONTAINER="$OPTARG";;
-		:)  echo "Error: -$OPTARG requires an argument" ; exit 1;;
-		?)  echo "Error: unknown option -$OPTARG" ; exit 1;;
+		o) OUTPUT="$OPTARG";;
+		:) echo "Error: -$OPTARG requires an argument" ; exit 1;;
+		?) echo "Error: unknown option -$OPTARG" ; exit 1;;
     esac
 done
 
@@ -35,5 +37,9 @@ docker cp "${INPUT}" "${CONTAINER}":/data/"${INPUT}"
 # This should print to STDOUT
 docker run --rm -ti \
 	openmetagenometoolkit \
-	perl /home/pakbin/calculate_fasta_median_length.pl \
-	/data/"${INPUT}"
+	perl /home/pakbin/remove_block_fasta_format.pl \
+	/data/"${INPUT}" \
+	/data/"${OUTPUT}"
+
+# Put the file back in the local directory
+docker cp "${CONTAINER}":/data/"${INPUT}" "${OUTPUT}"
