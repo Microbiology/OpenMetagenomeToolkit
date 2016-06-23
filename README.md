@@ -1,12 +1,12 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/iprophage.svg?style=social)](https://twitter.com/iprophage)
 
 # The Open Metagenome Toolkit
-A collaborative and open source toolkit to facilitate metagenomic analysis. This toolkit focuses on virus metagenomics.
+A collaborative and open source toolkit to facilitate metagenomic analysis.
 
 **Maintained** by [Geoffrey Hannigan](http://microbiology.github.io)
 
-###Emphasis on Mobility
-This toolkit is focused on mobility. Dependencies are minimal so just [download the most recent release](https://github.com/Microbiology/Microbiome_sequence_analysis_toolkit/releases) and you should be good to go.
+###WARNING
+I am trying something new with this package so be aware that this is currently very much in development and likely has bugs. Feel free to use it, but for just be cautious and let me know if you encounter any issues.
 
 ###Getting Involved
 The goal is for this to be a collaborative effort that makes metagenomic analysis easier for everyone. Get involved as a **contributor** to get your **name** added to this repository homepage.
@@ -30,3 +30,35 @@ We as scientists are often legally required to remove any sequence information t
 
 ###4. Negative Control Removal
 As with any experiment, it is important to process negative control samples so that we can define the background noise. If any sequences are detected in the negative control sample, those sequences should be removed from the experimental sample because their biological relevance is in question. We can use the scripts in this toolkit to remove any shared sequences between the negative control and experimental samples.
+
+#Commands
+
+* (CalculateMedianLengthFasta)[./bin/CalculateMedianLenthFasta]
+
+* (CalculateMedianLengthFastq)[./bin/CalculateMedianLenthFastq]
+
+* RemoveBlockFastaFormat
+
+* QualityTrimFastq
+
+* CalculateContigStats
+
+* RenameContigs
+
+* FilterFasta
+
+* GetForwardReads
+
+* Predict2Gff3
+
+* TranslateFasta
+
+* RemoveHumanReads
+
+* RemoveMouseReads
+
+* CleanNegativeControls
+
+* RemoveAdapters
+
+* AssembleContigs
