@@ -1,0 +1,66 @@
+#! /bin/bash
+# QualityTrimFastq
+# Geoffrey Hannigan
+# Pat Schloss Lab
+# University of Michigan
+
+##################
+# Set Parameters #
+##################
+# Set defaults
+ERROR=0.1
+OVERLAP=175
+
+# Set some commands that we can use at the command line
+usage() { echo -e "Usage: Trim illumina fastq sequences by quality score and OVERLAP:
+	[-h] This helpful help menu
+	[-i] Input fasta file (required)
+	[-e] Allowed error threshold (default: ${ERROR})
+	[-v] Overlap threshold (default: ${OVERLAP})
+	[-t] Three prime adapter sequence (required)
+	[-f] Five prime adapter sequence (required)
+	[-o] Output fasta file (required)"; exit 1;}
+
+while getopts ":hi:o:evt:f:" option; do
+    case "$option" in
+        h) usage ;;
+        i) INPUT="$OPTARG";;
+		o) OUTPUT="$OPTARG";;
+		e) ERROR="$OPTARG";;
+		v) OVERLAP="$OPTARG";;
+		t) THREE="$OPTARG";;
+		f) FIVE="$OPTARG";;
+		:) echo "Error: -$OPTARG requires an argument" ; exit 1;;
+		?) echo "Error: unknown option -$OPTARG" ; exit 1;;
+    esac
+done
+
+docker run \
+	--name container123 \
+	-d microbiology/openmetagenometoolkit /bin/sh -c "while true; do echo running...; sleep 1; done" \
+	> ./dockerapp.log
+
+##############
+# Run Docker #
+##############
+# Move the file into the container
+filename=$(echo ${INPUT} | sed 's/.*\///g')
+outputname=$(echo ${OUTPUT} | sed 's/.*\///g')
+docker cp "${INPUT}" container123:/data/"${filename}" > ./dockerapp.log
+
+# Run docker on the data file
+docker exec \
+	container123 \
+	/bin/cutadapt \
+    	—error-rate=${ERROR} \
+    	—overlap=${OVERLAP} \
+    	-a ${THREE} \
+    	-a ${FIVE} \
+    	/data/"${filename}" \
+    	> /data/"${outputname}"
+
+# Put the file back in the local directory
+docker cp container123:/data/"${outputname}" ./"${outputname}"
+
+docker stop container123 > ./dockerapp.log
+docker rm container123 > ./dockerapp.log

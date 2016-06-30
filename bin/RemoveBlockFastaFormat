@@ -7,39 +7,44 @@
 ##################
 # Set Parameters #
 ##################
-
 # Set some commands that we can use at the command line
 usage() { echo -e "Usage: Return median sequence length of sequences:
 	[-h] This helpful help menu
-	[-c] Container ID (required)
 	[-i] Input fasta file (required)
 	[-o] Output fasta file (required)"; exit 1;}
 
-while getopts ":hi:c:" option; do
+while getopts ":hi:o:" option; do
     case "$option" in
         h) usage ;;
         i) INPUT="$OPTARG";;
-		c) CONTAINER="$OPTARG";;
 		o) OUTPUT="$OPTARG";;
 		:) echo "Error: -$OPTARG requires an argument" ; exit 1;;
 		?) echo "Error: unknown option -$OPTARG" ; exit 1;;
     esac
 done
 
+docker run \
+	--name container123 \
+	-d microbiology/openmetagenometoolkit /bin/sh -c "while true; do echo running...; sleep 1; done" \
+	> ./dockerapp.log
+
 ##############
 # Run Docker #
 ##############
-
 # Move the file into the container
-docker cp "${INPUT}" "${CONTAINER}":/data/"${INPUT}"
+filename=$(echo ${INPUT} | sed 's/.*\///g')
+outputname=$(echo ${OUTPUT} | sed 's/.*\///g')
+docker cp "${INPUT}" container123:/data/"${filename}" > ./dockerapp.log
 
 # Run docker on the data file
-# This should print to STDOUT
-docker run --rm -ti \
-	openmetagenometoolkit \
-	perl /home/pakbin/remove_block_fasta_format.pl \
-	/data/"${INPUT}" \
-	/data/"${OUTPUT}"
+docker exec \
+	container123 \
+	perl /home/remove_block_fasta_format.pl \
+	/data/"${filename}" \
+	/data/"${outputname}"
 
 # Put the file back in the local directory
-docker cp "${CONTAINER}":/data/"${INPUT}" "${OUTPUT}"
+docker cp container123:/data/"${outputname}" ./"${outputname}"
+
+docker stop container123 > ./dockerapp.log
+docker rm container123 > ./dockerapp.log

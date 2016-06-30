@@ -2,7 +2,7 @@
 FROM ubuntu:14.04
 
 # Define the maintainer of the image
-MAINTAINER Geoffrey Hannigan, PhD <ghannig@umich.edu>
+MAINTAINER Geoffrey Hannigan <ghannig@umich.edu>
 
 # Download 
 RUN  apt-get update \
@@ -20,6 +20,7 @@ RUN pip install Cython
 RUN wget -O /home/prinseq-lite-0.20.4.tar.gz http://pilotfiber.dl.sourceforge.net/project/prinseq/standalone/prinseq-lite-0.20.4.tar.gz
 # Unzip
 RUN tar -zxvf /home/prinseq-lite-0.20.4.tar.gz
+RUN rm /home/prinseq-lite-0.20.4.tar.gz
 
 #################
 # FASTX TOOLKIT #
@@ -28,6 +29,7 @@ RUN tar -zxvf /home/prinseq-lite-0.20.4.tar.gz
 RUN wget -O /home/fastx_toolkit_0.0.13_binaries_Linux_2.6_amd64.tar.bz2 http://hannonlab.cshl.edu/fastx_toolkit/fastx_toolkit_0.0.13_binaries_Linux_2.6_amd64.tar.bz2
 # Uncompress that toolkit
 RUN tar -vxjf /home/fastx_toolkit_0.0.13_binaries_Linux_2.6_amd64.tar.bz2
+RUN rm /home/fastx_toolkit_0.0.13_binaries_Linux_2.6_amd64.tar.bz2
 # Binaries can be found in `./bin`
 
 ############
@@ -37,6 +39,7 @@ RUN tar -vxjf /home/fastx_toolkit_0.0.13_binaries_Linux_2.6_amd64.tar.bz2
 RUN wget -O /home/deconseq-standalone-0.4.3.tar.gz http://jaist.dl.sourceforge.net/project/deconseq/standalone/deconseq-standalone-0.4.3.tar.gz
 # Uncompress the file
 RUN tar -zxvf /home/deconseq-standalone-0.4.3.tar.gz
+RUN rm /home/deconseq-standalone-0.4.3.tar.gz
 RUN mkdir ./deconseq-standalone-0.4.3/db
 # Download human reference dataset
 WORKDIR "./deconseq-standalone-0.4.3/db"
@@ -62,5 +65,18 @@ WORKDIR "/home/cutadapt-1.10/"
 RUN python2.7 ./setup.py install --user
 
 ADD ./pakbin/* /home/
+
+############
+# Clean Up #
+############
+
+# Clean up some of the dependencies that we no longer need
+RUN pip uninstall -y Cython
+RUN apt-get purge -y python-pip python-dev build-essential wget
+RUN apt-get autoremove -y
+
+#######################
+# SET IMAGE DIRECTORY #
+#######################
 
 WORKDIR /data/
